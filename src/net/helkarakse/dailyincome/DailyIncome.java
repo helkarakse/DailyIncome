@@ -10,22 +10,29 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class DailyIncome extends JavaPlugin {
 	private Database db;
 	private Logger logger = Logger.getLogger("DailyIncome");
+	private String tableName = "Players";
 
 	@Override
 	public void onEnable() {
+		// create the database if needed
 		db = new SQLite(logger, "[DailyIncome] ", getDataFolder()
 				.getAbsolutePath(), "DailyIncome", ".sqlite");
 
 		try {
 			db.open();
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-			getPluginLoader().disablePlugin(this);
+
+		} catch (Exception exception) {
+			processException(exception);
 		}
 	}
 
 	@Override
 	public void onDisable() {
-		
+
+	}
+
+	private void processException(Exception exception) {
+		logger.info(exception.getMessage());
+		getPluginLoader().disablePlugin(this);
 	}
 }
