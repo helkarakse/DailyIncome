@@ -8,5 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/User/Downloads/craftbukkit/plugins/Vault.jar"/>
+	<classpathentry kind="lib" path="lib/SQLibrary-6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
