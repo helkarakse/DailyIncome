@@ -21,6 +21,15 @@ public final class DailyIncome extends JavaPlugin {
 		try {
 			db.open();
 
+			if (!db.isTable(tableName)) {
+				try {
+					db.query("CREATE TABLE "
+							+ tableName
+							+ " (id INTEGER PRIMARY KEY, name TEXT, timestamp INTEGER);");
+				} catch (Exception exception) {
+					processException(exception);
+				}
+			}
 		} catch (Exception exception) {
 			processException(exception);
 		}
