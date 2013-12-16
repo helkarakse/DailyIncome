@@ -1,0 +1,4 @@
+    name: DailyIncome
+    main: net.helkarakse.dailyincome
+    version: 1.0
+    authors: [helkarakse, djdarkstorm]
