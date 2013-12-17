@@ -1,19 +1,25 @@
 package net.helkarakse.dailyincome;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import lib.PatPeter.SQLibrary.Database;
 import lib.PatPeter.SQLibrary.SQLite;
 import net.milkbowl.vault.economy.Economy;
 
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class DailyIncome extends JavaPlugin {
 	private Database db;
 	private Logger logger = Logger.getLogger("DailyIncome");
-	private String tableName = "Players";
+
 	private static Economy economy = null;
+	private YamlConfiguration configuration = new YamlConfiguration();
+
+	private String tableName = "Players";
+	private String configName = "config.yml";
 
 	@Override
 	public void onEnable() {
@@ -49,6 +55,19 @@ public final class DailyIncome extends JavaPlugin {
 		} else {
 			processError("Vault plugin not found, required for this to work.");
 		}
+
+		// configuration parsing
+		File configFile = new File(getDataFolder(), configName);
+
+		if (!configFile.exists()) {
+			getDataFolder().mkdir();
+			configuration = YamlConfiguration.loadConfiguration(this
+					.getResource(configName));
+		} else {
+			YamlConfiguration.loadConfiguration(configFile);
+		}
+		
+		saveDefaultConfig();
 	}
 
 	@Override
