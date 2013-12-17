@@ -1,0 +1,12 @@
+Main:
+  Delay: 60
+Tier:
+  1:
+    Economy Amount: 5
+    Message: "&6You were given &4!amount !type &6for joining today!"
+  2:
+    Economy Amount: 10
+    Message: "&6You were given &4!amount !type &6for joining today!"
+  3:
+    Economy Amount: 20
+    Message: "&6You were given &4!amount !type &6for joining today!"
